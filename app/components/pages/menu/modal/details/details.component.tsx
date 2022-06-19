@@ -48,6 +48,7 @@ const ModalDetail: FC<IModalProps> = ({ open, close, type, back, id }) => {
           setOpenConfirmActive(false);
           setOpenConfirm(true);
         }}
+        loading={false}
       />
       <ModalDelete
         open={openConfirmDelete}
@@ -84,10 +85,6 @@ const ModalDetail: FC<IModalProps> = ({ open, close, type, back, id }) => {
             <div className="flex flex-row justify-between items-center gap-3">
               <WrapperImage className="rounded-full bg-black flex justify-center items-center">
                 <img
-                 
-                 
-                 
-               
                   src={menu?.linkImage}
                   alt="img"
                   className="object-fill rounded-full"
