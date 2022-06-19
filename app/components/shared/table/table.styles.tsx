@@ -1,7 +1,11 @@
 import tw from 'tailwind-styled-components';
 import styled from 'styled-components';
 
-const WrapperTableStyled = styled.table`
+interface IWrapperTableStyledInterface {
+  type_table: 'table-fixed' | 'table-auto';
+}
+
+const WrapperTableStyled = styled.table<IWrapperTableStyledInterface>`
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
@@ -17,6 +21,8 @@ const WrapperTableStyled = styled.table`
     tr {
       background-color: white;
       border-radius: 8px !important;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
 
       td {
         padding: 16px 5px;
@@ -50,7 +56,9 @@ const WrapperTableStyled = styled.table`
     }
   }
 `;
+
 export const WrapperTable = tw(WrapperTableStyled)`
-  table-fixed
+  ${(props: IWrapperTableStyledInterface) =>
+    props.type_table && props.type_table}
   text-left
 `;

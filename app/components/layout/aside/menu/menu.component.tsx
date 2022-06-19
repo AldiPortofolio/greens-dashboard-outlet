@@ -2,21 +2,40 @@ import { FC, useState } from 'react';
 import { Container, ActiveMenu, WrapperCenter } from './menu.styles';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
-import { setTitle } from '@/app/store/layout/layout.slice';
+import {
+  setTitle,
+  setTabOrder,
+  setMenuActive,
+} from '@/app/store/layout/layout.slice';
+import { useRouter } from 'next/router';
 
 interface IMenuProps {
+  id: string;
   logoActive: string;
   logoInActive: string;
   title: string;
+  tab: string;
+  url: string;
+  active: boolean;
 }
 
-const Menu: FC<IMenuProps> = ({ logoActive, logoInActive, title }) => {
-  const [active, setActive] = useState(false);
+const Menu: FC<IMenuProps> = ({
+  id,
+  logoActive,
+  logoInActive,
+  title,
+  tab,
+  url,
+  active,
+}) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const onChangeMenu = () => {
-    setActive(!active);
+    dispatch(setMenuActive(id));
     dispatch(setTitle(title));
+    dispatch(setTabOrder(tab));
+    router.push(url);
   };
 
   return (
